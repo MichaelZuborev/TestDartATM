@@ -1,12 +1,14 @@
+import 'package:DartATM/AbstractBanknote.dart';
+
 //Кдасс представляет купюру
-class Banknote {
+class Banknote extends AbstractBanknote {
   //Номинал купюры
   int denomination;
 
   Banknote(int value) {
-    if(!verifyValue(value)){
+    if (!verifyValue(value)) {
       denomination = 1;
-    }else{
+    } else {
       denomination = value;
     }
   }
@@ -16,6 +18,7 @@ class Banknote {
     return value >= 1;
   }
 
+  @override
   int get() {
     return denomination;
   }
