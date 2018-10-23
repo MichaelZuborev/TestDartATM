@@ -16,7 +16,7 @@ void main() {
   test('getOneBankonte', () {
     List<Banknote> banknotes = new List();
     banknotes.add(new Banknote(5));
-    expect(factory.getBanknotes('5'), equals(banknotes));
+    expect(factory.getBanknotes('5').first, equals(banknotes.first));
   });
 
   test('getThreeBankontes', () {
@@ -47,12 +47,6 @@ void main() {
       return;
     }
     throw new ArgumentError();
-  });
-
-  test('getThreeBankontesWithTooBigValue', () {
-    if (factory.getBanknotes('100000000,6,8') != null) {
-      throw new ArgumentError();
-    }
   });
 
   test('getThreeBankontesWithZero', () {

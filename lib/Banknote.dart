@@ -23,7 +23,15 @@ class Banknote extends AbstractBanknote {
     return denomination;
   }
 
-  bool equals(Banknote that) {
-    return this.get() == that.get();
+  @override
+  String toString() {
+    return denomination.toString();
   }
+
+  @override
+  int get hashCode {
+    return denomination;
+  }
+
+  bool operator ==(o) => o is Banknote && o.get() == denomination;
 }
