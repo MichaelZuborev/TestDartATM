@@ -1,8 +1,6 @@
 name: DartATM
-description: A sample command-line application.
-# version: 1.0.0
-# homepage: https://www.example.com
-# author: Reaper <email@example.com>
+description: Тестовое задание на языке Dart
+author: Zuborev Michael <michaelzuborev@gmail.com>
 
 environment:
   sdk: '>=2.0.0 <3.0.0'
