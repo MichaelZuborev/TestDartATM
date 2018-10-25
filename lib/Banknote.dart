@@ -19,7 +19,7 @@ class Banknote extends AbstractBanknote {
   }
 
   @override
-  int get() {
+  int getValue() {
     return denomination;
   }
 
@@ -33,5 +33,5 @@ class Banknote extends AbstractBanknote {
     return denomination;
   }
 
-  bool operator ==(o) => o is Banknote && o.get() == denomination;
+  bool operator ==(o) => o is Banknote && o.getValue() == denomination;
 }

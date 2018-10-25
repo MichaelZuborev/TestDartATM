@@ -1,3 +1,3 @@
 abstract class AbstractBanknote{
-  int get();
+  int getValue();
 }
