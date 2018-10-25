@@ -1,6 +1,7 @@
 import 'package:test/test.dart';
 import 'package:DartATM/ATM.dart';
 import 'package:DartATM/Banknote.dart';
+import 'package:DartATM/AbstractBanknote.dart';
 
 //Testing bills
 void main() {
@@ -33,14 +34,14 @@ void main() {
 
   test('getMoneyWithPattern1', () {
     atm.setBanknotePattern('1,5,10');
-    List<Banknote> expectedBanknotes = new List();
+    List<AbstractBanknote> expectedBanknotes = new List();
     for (int i = 0; i < 5; i++) {
       expectedBanknotes.add(new Banknote(1));
     }
     expectedBanknotes.add(new Banknote(5));
     expectedBanknotes.add(new Banknote(10));
 
-    List<Banknote> receivedMoney = atm.getMoney(20);
+    List<AbstractBanknote> receivedMoney = atm.getMoney(20);
     for (int i = 0; i < receivedMoney.length; i++) {
       expect(
           receivedMoney.elementAt(i), equals(expectedBanknotes.elementAt(i)));
@@ -49,7 +50,7 @@ void main() {
 
   test('getMoneyWithPattern2', () {
     atm.setBanknotePattern('2,6,7');
-    List<Banknote> expectedBanknotes = new List();
+    List<AbstractBanknote> expectedBanknotes = new List();
     expectedBanknotes.add(new Banknote(2));
     expectedBanknotes.add(new Banknote(2));
     expectedBanknotes.add(new Banknote(6));
@@ -57,7 +58,24 @@ void main() {
     expectedBanknotes.add(new Banknote(7));
     expectedBanknotes.add(new Banknote(7));
 
-    List<Banknote> receivedMoney = atm.getMoney(30);
+    List<AbstractBanknote> receivedMoney = atm.getMoney(30);
+    for (int i = 0; i < receivedMoney.length; i++) {
+      expect(
+          receivedMoney.elementAt(i), equals(expectedBanknotes.elementAt(i)));
+    }
+  });
+
+  test('getMoneyWithPattern3', () {
+    atm.setBanknotePattern('2,5,10');
+    List<AbstractBanknote> expectedBanknotes = new List();
+    for (int i = 0; i < 5; i++) {
+      expectedBanknotes.add(new Banknote(2));
+    }
+    expectedBanknotes.add(new Banknote(5));
+    expectedBanknotes.add(new Banknote(5));
+    expectedBanknotes.add(new Banknote(10));
+
+    List<AbstractBanknote> receivedMoney = atm.getMoney(30);
     for (int i = 0; i < receivedMoney.length; i++) {
       expect(
           receivedMoney.elementAt(i), equals(expectedBanknotes.elementAt(i)));
@@ -67,7 +85,7 @@ void main() {
   test('getWrongAmontOfMoneyWithPattern', () {
     atm.setBanknotePattern('2,5,10');
     try {
-      atm.getMoney(6);
+      atm.getMoney(3);
     } on ArgumentError catch (e) {
       return;
     }
