@@ -13,7 +13,7 @@ class BanknoteFactory extends AbstractBanknoteFactory {
     if (banknoteValues == null) {
       return null;
     }
-    List<Banknote> banknotes = new List();
+    List<AbstractBanknote> banknotes = new List();
     banknoteValues.forEach((element) => banknotes.add(new Banknote(element)));
     return banknotes;
   }
