@@ -82,6 +82,34 @@ void main() {
     }
   });
 
+  test('getMoneyWithPattern4', () {
+    atm.setBanknotePattern('3,9,10');
+    List<AbstractBanknote> expectedBanknotes = new List();
+    expectedBanknotes.add(new Banknote(10));
+    expectedBanknotes.add(new Banknote(10));
+
+    List<AbstractBanknote> receivedMoney = atm.getMoney(20);
+    for (int i = 0; i < receivedMoney.length; i++) {
+      expect(
+          receivedMoney.elementAt(i), equals(expectedBanknotes.elementAt(i)));
+    }
+  });
+
+  test('getMoneyWithPattern5', () {
+    atm.setBanknotePattern('3,9,30');
+    List<AbstractBanknote> expectedBanknotes = new List();
+    expectedBanknotes.add(new Banknote(3));
+    for (int i = 0; i < 3; i++) {
+      expectedBanknotes.add(new Banknote(9));
+    }
+
+    List<AbstractBanknote> receivedMoney = atm.getMoney(30);
+    for (int i = 0; i < receivedMoney.length; i++) {
+      expect(
+          receivedMoney.elementAt(i), equals(expectedBanknotes.elementAt(i)));
+    }
+  });
+
   test('getWrongAmontOfMoneyWithPattern', () {
     atm.setBanknotePattern('2,5,10');
     try {
