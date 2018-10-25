@@ -33,5 +33,11 @@ class Banknote extends AbstractBanknote {
     return denomination;
   }
 
+
+  @override
+  int compareTo(AbstractBanknote other) {
+    return this.getValue() - other.getValue();
+  }
+
   bool operator ==(o) => o is Banknote && o.getValue() == denomination;
 }
