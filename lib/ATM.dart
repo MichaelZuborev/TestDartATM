@@ -56,8 +56,11 @@ class BanknoteProcessor {
     banknoteTypeBarrier = banknoteTypes.length - 1;
   }
 
-  //Возвращает лист банкнот по алгоритму
-  //мин. купюр, макс. разнообразие номиналов
+  /*Возвращает лист банкнот по алгоритму
+  *мин. купюр, макс. разнообразие номиналов
+  *Идет перебор по принцыпу вычитания из кол-ва денег номинала банкноты
+  * необходимое количество раз (и необходимые номиналы банкнот)
+  */
   List<AbstractBanknote> getBanknotes(int money) {
     for (int rightBarrier = 0;
         rightBarrier < banknoteTypes.length;
@@ -109,7 +112,7 @@ class BanknoteProcessor {
 
     if (minAmountOfBanknotes == -1) {
       throw new ArgumentError(
-          'Can\'t give this amount of mony with such pattern of banknotes ');
+          'Can\'t give this amount of money with such pattern of banknotes ');
     }
     usedBanknotes.sort();
     return usedBanknotes;
@@ -121,18 +124,21 @@ class BanknoteProcessor {
       List<AbstractBanknote> privateCashBanknotes = new List();
       privateCashBanknotes.addAll(cashBanknotes);
       privateCashBanknotes.add(banknote);
-      if(money - banknote.getValue() > 0){
+      if (money - banknote.getValue() > 0) {
         int index = banknoteTypes.indexOf(banknote);
         for (int i = index; i >= 0; i--) {
           processBanknotes(banknoteTypes.elementAt(i),
               money - banknote.getValue(), privateCashBanknotes);
         }
-      }else{
-        if(privateCashBanknotes.length + usedBanknotes.length < minAmountOfBanknotes || minAmountOfBanknotes == -1){
+      } else {
+        if (privateCashBanknotes.length + usedBanknotes.length <
+                minAmountOfBanknotes ||
+            minAmountOfBanknotes == -1) {
           cashUsedBanknotes = new List();
           cashUsedBanknotes.addAll(privateCashBanknotes);
-          minAmountOfBanknotes = cashUsedBanknotes.length + usedBanknotes.length;
-        }else{
+          minAmountOfBanknotes =
+              cashUsedBanknotes.length + usedBanknotes.length;
+        } else {
           return;
         }
       }
