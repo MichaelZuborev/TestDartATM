@@ -15,10 +15,11 @@ class ATM extends AbstractATM {
 
   @override
   void setBanknotePattern(String pattern) {
-    banknoteTypes = banknoteFactory.getBanknotes(pattern);
-    if (banknoteTypes == null) {
+    Set<AbstractBanknote> banknoteTypesSet = banknoteFactory.getBanknotes(pattern).toSet();
+    if (banknoteTypesSet == null) {
       throw ArgumentError(['Wrong pattern for banknotes']);
     }
+    banknoteTypes = banknoteTypesSet.toList();
     banknoteTypes.sort();
   }
 
