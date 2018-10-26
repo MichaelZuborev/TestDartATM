@@ -31,6 +31,7 @@ main(List<String> arguments) {
       for (int i = 0; i < banknotes.length; i++) {
         print((i+1).toString() + ':' + banknotes.elementAt(i).toString());
       }
+      print('--------------');
     } catch (e) {
       print('Невозможно выдать сумму с указанным паттерном');
       continue;
